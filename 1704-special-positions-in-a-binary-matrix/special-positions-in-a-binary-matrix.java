@@ -1,38 +1,25 @@
 class Solution {
     public int numSpecial(int[][] mat) {
         int cnt=0;
-        for(int i=0;i<mat.length;i++){
-            for(int j=0;j<mat[0].length;j++){
+        int m=mat.length;
+        int n=mat[0].length;
+        int row[]=new int[m];
+        int col[]=new int[n];
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
                 if(mat[i][j]==1){
-                    int k=0;
-                    boolean Rowvalid=true;
-                    boolean Colvalid=true;
-                    while(k<mat[0].length){
-                       if(k!=j && mat[i][k]==1){
-                       Rowvalid=false;
-                        break;
-                       }
-                       else{ k++;
-
-                       }
-                    }
-                    int l=0;
-                    while(l<mat.length){
-                       if(l!=i && mat[l][j]==1){
-                        Colvalid=false;
-                        break;
-                       }
-                       else{
-                        l++;
-                       }
-                    }
-                    if(Colvalid && Rowvalid){
-                        cnt++;
-                    }
+                    row[i]++;
+                    col[j]++;
+                }
+            }
+        }
+        for(int i=0; i<m; i++){
+            for(int j=0; j<n; j++){
+                if(mat[i][j]==1 && row[i]==1 && col[j]==1){
+                    cnt++;
                 }
             }
         }
         return cnt;
-        
     }
 }
